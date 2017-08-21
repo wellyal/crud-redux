@@ -3,7 +3,7 @@ import { actionTypes } from 'reducers/people'
 
 import peopleService from 'services/people'
 
-export function *getPeople() {
+function *getPeople() {
   try {
     const status = yield call(peopleService.people)
     yield put({ type: actionTypes.SUCCESS, payload: status })

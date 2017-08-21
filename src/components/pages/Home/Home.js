@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
-import PeopleService from 'services/people'
 
 import './Home.css'
 
 class Home extends Component {
 
   componentWillMount() {
-    PeopleService.people()
-      .then(success => {
-        console.log(success)
-      })
-      .catch(error => {
-        console.log('problems with service')
-      })
+    this.props.getPeople()
   }
 
   render() {

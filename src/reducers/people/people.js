@@ -15,7 +15,7 @@ const defaultState = {
   data: null
 }
 
-const reducer = handleActions({
+const people = handleActions({
   [actionTypes.REQUEST](state) {
     return {
       ...state,
@@ -41,4 +41,4 @@ const reducer = handleActions({
 
 export const getPeople = () => peopleRequest()
 
-export default reducer
+export default people
