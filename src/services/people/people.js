@@ -1,6 +1,5 @@
-import axios from 'axios'
-const BASE_URL = 'http://swapi.co/api'
+import HttpService from 'services/HttpService'
 
-const people = () => axios.get(`${BASE_URL}/people/1/`)
+const people = () => HttpService.get('/people/1/')
 
 export default { people }
