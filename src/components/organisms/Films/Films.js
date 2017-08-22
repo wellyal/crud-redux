@@ -1,5 +1,9 @@
 import React from 'react'
 
-export const Films = () => <div>Films</div>
+export const Films = props => {
+  return (
+    <div>Films</div>
+  )
+}
 
 export default Films
