@@ -85,10 +85,6 @@ class Films extends PureComponent {
           <label>Release</label>
           <input name="release_date" value={this.state.release_date} onChange={this.handleChange}/>
         </div>
-        <div>
-          <label>Episode</label>
-          <input name="episode_id" value={this.state.episode_id} onChange={this.handleChange}/>
-        </div>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import uuidv1 from 'uuid/v1'
 import Loader from 'components/atoms/Loader'
 import Person from 'components/organisms/Person'
 import Films from 'components/organisms/Films'
@@ -75,7 +76,7 @@ class Home extends PureComponent {
   handleAdd = (itemValues) => {
     console.log(this.state.films)
 
-    const films = [...this.state.films, {data: {...itemValues}}]
+    const films = [...this.state.films, {data: {...itemValues, episode_id: uuidv1() }}]
     this.setState({ films })
   }
 }
