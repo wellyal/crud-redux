@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Films = props => {
+const Films = () => {
   return (
     <div>Films</div>
   )
