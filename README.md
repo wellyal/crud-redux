@@ -38,7 +38,7 @@ npm run build
 
 ## Archtecture Design
 
-Para ajudar na estrutura do projeto utilizei a excelente proposta de Brad Frost para criar um design atomico. [http://bradfrost.com/blog/post/atomic-web-design/](O que é design atômico?)
+Para ajudar na estrutura do projeto utilizei a excelente proposta de Brad Frost para criar um design atomico. [O que é design atômico?](http://bradfrost.com/blog/post/atomic-web-design/)
 
 Dentro da pasta "src/" temos a seguinte estrutura:
 
@@ -55,7 +55,7 @@ src/
 
 **componentes** Componentes utilizados no projeto seguindo padrão de componentização atomico.
 
-**reducers:** Basicamente todas as configurações do redux são feitas aqui, assim como os seus respectivos reducers. Vale ressaltar que utilizo a proposta do projeto open source (https://github.com/erikras/ducks-modular-redux)[Ducks Modular Redux] que basicamente propõe uma composição de arquivos mais enxuta jogando as actions e actions creators para dentro dos reducers.
+**reducers:** Basicamente todas as configurações do redux são feitas aqui, assim como os seus respectivos reducers. Vale ressaltar que utilizo a proposta do projeto open source [Ducks Modular Redux](https://github.com/erikras/ducks-modular-redux) que basicamente propõe uma composição de arquivos mais enxuta jogando as actions e actions creators para dentro dos reducers.
 
 **sagas:** Configuração e modulos do redux-saga que é basicamente o middleware do redux. As funções saga tem por objetivo tratar assincronissídades e se comunicam direto com os services. Cada função saga será disparada toda vez que sua respectva action for chamada.
 
