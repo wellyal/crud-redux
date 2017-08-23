@@ -1,59 +1,104 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import Header from 'components/molecules/Header'
 import Button from 'components/atoms/Button'
 import Loader from 'components/atoms/Loader'
 
 import './Films.css'
 
-const renderFilms = (filmsInfo, handleDelete) => {
-  if(!filmsInfo) return null
+class Films extends PureComponent {
 
-  return (
-    <div>
-      { filmsInfo.map(film => {
-          return (
-            <div key={film.data.episode_id} className="film-block">
-              <button onClick={() => handleDelete(film.data)}>Delete</button>
-              <div>
-                <label>Title: </label>
-                <span>{ film.data.title }</span>
+  state = {
+    title: '',
+    director: '',
+    producer: '',
+    release_date: '',
+    episode_id: ''
+  }
+
+  render() {
+    const filmsInfo = this.props.data
+
+    return (
+      <section>
+        <Header title="Films" />
+        { this.props.isLoading
+            ? <Loader />
+            : <div>
+                <Button onClick={() => this.props.handleAdd(this.state)}>Add Film</Button>
+                <div>{this.renderFormAddFilm(this.props.handleAdd)}</div>
+                {this.renderFilms(filmsInfo, this.props.handleDelete)}
               </div>
-              <div>
-                <label>Director: </label>
-                <span>{ film.data.director }</span>
+        }
+      </section>
+    )
+  }
+
+  renderFilms = (filmsInfo, handleDelete) => {
+    if(!filmsInfo) return null
+
+    return (
+      <div>
+        { filmsInfo.map(film => {
+            return (
+              <div key={film.data.episode_id} className="film-block">
+                <Button onClick={() => handleDelete(film.data)}>Delete</Button>
+                <div>
+                  <label>Title: </label>
+                  <span>{ film.data.title }</span>
+                </div>
+                <div>
+                  <label>Director: </label>
+                  <span>{ film.data.director }</span>
+                </div>
+                <div>
+                  <label>Producer: </label>
+                  <span>{ film.data.producer }</span>
+                </div>
+                <div>
+                  <label>Release: </label>
+                  <span>{ film.data.release_date }</span>
+                </div>
               </div>
-              <div>
-                <label>Producer: </label>
-                <span>{ film.data.producer }</span>
-              </div>
-              <div>
-                <label>Release: </label>
-                <span>{ film.data.release_date }</span>
-              </div>
-            </div>
-          )
-        })
-      }
-    </div>
-  )
-}
+            )
+          })
+        }
+      </div>
+    )
+  }
 
-const Films = props => {
-  const filmsInfo = props.data
+  renderFormAddFilm = () => {
+    return (
+      <div>
+        <div>
+          <label>Title</label>
+          <input name="title" value={this.state.title} onChange={this.handleChange}/>
+        </div>
+        <div>
+          <label>Director</label>
+          <input name="director" value={this.state.director} onChange={this.handleChange}/>
+        </div>
+        <div>
+          <label>Producer</label>
+          <input name="producer" value={this.state.producer} onChange={this.handleChange}/>
+        </div>
+        <div>
+          <label>Release</label>
+          <input name="release_date" value={this.state.release_date} onChange={this.handleChange}/>
+        </div>
+        <div>
+          <label>Episode</label>
+          <input name="episode_id" value={this.state.episode_id} onChange={this.handleChange}/>
+        </div>
+      </div>
+    )
+  }
 
-  return (
-    <section>
-      <Header title="Films" />
-
-      {
-        props.isLoading
-          ? <Loader />
-          : <div>{renderFilms(filmsInfo, props.handleDelete)}</div>
-
-      }
-
-    </section>
-  )
+  handleChange = (ev) => {
+    const name = ev.target.name;
+    this.setState({
+      [name]: ev.target.value
+    });
+  }
 }
 
 

@@ -45,6 +45,7 @@ class Home extends PureComponent {
         <Films
           data={this.state.films}
           handleDelete={this.handleDelete}
+          handleAdd={this.handleAdd}
           isLoading={this.props.films.isFetching} />
         <Species />
         <Vehicles />
@@ -64,13 +65,18 @@ class Home extends PureComponent {
   }
 
   handleDelete = (item) => {
-    const newFilmList = this.state.films.filter( film => {
+    const films = this.state.films.filter( film => {
       return film.data.episode_id != item.episode_id
     })
 
-    this.setState({
-      films: newFilmList
-    });
+    this.setState({ films })
+  }
+
+  handleAdd = (itemValues) => {
+    console.log(this.state.films)
+
+    const films = [...this.state.films, {data: {...itemValues}}]
+    this.setState({ films })
   }
 }
 
