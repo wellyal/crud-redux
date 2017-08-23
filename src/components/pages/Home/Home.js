@@ -11,19 +11,26 @@ import './Home.css'
 
 class Home extends PureComponent {
 
-  componentWillMount() {
+  state = {
+    films: null
+  }
+
+  componentDidMount() {
     this.props.getPeople()
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.people.data) {
+    if(nextProps.people.data && !this.state.films) {
       this.props.getFilms(parseUri(nextProps.people.data.films))
+      this.setState({
+        films: nextProps.people.data.films
+      })
     }
   }
 
   render() {
-    const { isFetching } = this.props.people
-    if(isFetching) return <Loader />
+
+    if(this.props.people.isFetching) return <Loader />
 
     return (
       <div className="container">
@@ -32,7 +39,7 @@ class Home extends PureComponent {
         </div>
 
         <Person data={this.userInfo} />
-        <Films data={this.filmsInfo} />
+        <Films data={this.props.films.data} isLoading={this.props.films.isFetching} />
         <Species />
         <Vehicles />
         <Starships />

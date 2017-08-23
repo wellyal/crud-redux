@@ -1,14 +1,14 @@
 import React from 'react'
+import Header from 'components/molecules/Header'
+import Button from 'components/atoms/Button'
 
 import './Person.css'
 
 export const Person = props => {
   return (
     <section>
-      <div className="person-header">
-        <h4>Personal Informations</h4>
-        <a href="#">edit</a>
-      </div>
+      <Header title="Personal Informations" />
+      <Button>Edit</Button>
 
       <div>
         <label>Name: </label>

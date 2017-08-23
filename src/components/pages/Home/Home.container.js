@@ -5,7 +5,7 @@ import { getFilms } from 'reducers/films'
 
 import Home from './Home'
 
-const mapStateToProps = ({ people, films }) => ({ people })
+const mapStateToProps = ({ people, films }) => ({ people, films })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getPeople,

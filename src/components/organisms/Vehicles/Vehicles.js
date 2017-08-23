@@ -1,5 +1,11 @@
 import React from 'react'
+import Header from 'components/molecules/Header'
+import Button from 'components/atoms/Button'
 
-export const Vehicles = () => <div>Vehicles</div>
+const Vehicles = () => (
+  <section>
+    <Header title="Vehicles" />
+  </section>
+)
 
 export default Vehicles
