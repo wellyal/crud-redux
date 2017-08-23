@@ -12,6 +12,7 @@ import './Home.css'
 class Home extends PureComponent {
 
   state = {
+    prestine: false,
     films: null
   }
 
@@ -20,16 +21,18 @@ class Home extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.people.data && !this.state.films) {
+    if(nextProps.people.data && !this.state.prestine) {
       this.props.getFilms(parseUri(nextProps.people.data.films))
-      this.setState({
-        films: nextProps.people.data.films
-      })
+      this.setState({ prestine: true })
+    }
+
+    if(nextProps.films.success) {
+      const { data } = nextProps.films
+      this.setState({ films: data })
     }
   }
 
   render() {
-
     if(this.props.people.isFetching) return <Loader />
 
     return (
@@ -39,7 +42,10 @@ class Home extends PureComponent {
         </div>
 
         <Person data={this.userInfo} />
-        <Films data={this.props.films.data} isLoading={this.props.films.isFetching} />
+        <Films
+          data={this.state.films}
+          handleDelete={this.handleDelete}
+          isLoading={this.props.films.isFetching} />
         <Species />
         <Vehicles />
         <Starships />
@@ -57,13 +63,15 @@ class Home extends PureComponent {
     })
   }
 
-  get filmsInfo () {
-    const filmsInfo = { ...this.props.people.data }
-    return ({
-      films: filmsInfo.films
+  handleDelete = (item) => {
+    const newFilmList = this.state.films.filter( film => {
+      return film.data.episode_id != item.episode_id
     })
-  }
 
+    this.setState({
+      films: newFilmList
+    });
+  }
 }
 
 export default Home

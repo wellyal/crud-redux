@@ -5,7 +5,7 @@ import Loader from 'components/atoms/Loader'
 
 import './Films.css'
 
-const renderFilms = (filmsInfo) => {
+const renderFilms = (filmsInfo, handleDelete) => {
   if(!filmsInfo) return null
 
   return (
@@ -13,6 +13,7 @@ const renderFilms = (filmsInfo) => {
       { filmsInfo.map(film => {
           return (
             <div key={film.data.episode_id} className="film-block">
+              <button onClick={() => handleDelete(film.data)}>Delete</button>
               <div>
                 <label>Title: </label>
                 <span>{ film.data.title }</span>
@@ -47,7 +48,7 @@ const Films = props => {
       {
         props.isLoading
           ? <Loader />
-          : <div>{renderFilms(filmsInfo)}</div>
+          : <div>{renderFilms(filmsInfo, props.handleDelete)}</div>
 
       }
 
