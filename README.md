@@ -1,3 +1,7 @@
+## Crud Redux
+
+![preview](https://snag.gy/U0Gg3I.jpg)
+
 ## Installing / Getting started
 
 O projeto utiliza o excelente CLI do facebook **create-react-app**, para criar uma estrutura básica e já configurada de um projeto em react. Create react app utiliza o webpack como bundler e task runner da aplicação. Inicialmente as configurações do webpack vêm ocultas ao usuário, porém a mesma foi extraída como forma de personalização.
