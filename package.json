@@ -2,7 +2,9 @@
   "name": "crud-redux",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {},
+  "devDependencies": {
+    "prop-types": "^15.5.10"
+  },
   "dependencies": {
     "autoprefixer": "7.1.2",
     "axios": "^0.16.2",

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import Header from 'components/molecules/Header'
 import Button from 'components/atoms/Button'
 import Loader from 'components/atoms/Loader'
@@ -7,6 +8,21 @@ import Input from 'components/molecules/Input'
 import './Films.css'
 
 class Films extends PureComponent {
+  static propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      director: PropTypes.string,
+      producer: PropTypes.string,
+      release_date: PropTypes.string
+    })),
+    handleDelete: PropTypes.func.isRequired,
+    handleSaveFilm: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired
+  }
+
+  static defaultProps = {
+    data: [{}]
+  }
 
   state = {
     title: '',
@@ -26,10 +42,10 @@ class Films extends PureComponent {
             ? <Loader />
             : <div>
                 <div className="form-films">
-                  {this.renderFormAddFilm(this.props.handleAdd)}
+                  {this.renderFormAddFilm(this.props.handleSaveFilm)}
                   <Button
                     className="success"
-                    onClick={() => this.props.handleAdd(this.state)}
+                    onClick={() => this.props.handleSaveFilm(this.state)}
                   >
                     Save
                   </Button>

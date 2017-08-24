@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import Header from 'components/molecules/Header'
 import Button from 'components/atoms/Button'
 import Input from 'components/molecules/Input'
@@ -6,6 +7,15 @@ import Input from 'components/molecules/Input'
 import './Person.css'
 
 class Person extends PureComponent {
+  static propsTypes = {
+    data: PropTypes.shape({
+      name: PropTypes.string,
+      gender: PropTypes.string,
+      birth_year: PropTypes.string,
+      height: PropTypes.string
+    }).isRequired
+  }
+
   state = {
     isDisabled: true,
     name: this.props.data.name,
@@ -18,6 +28,7 @@ class Person extends PureComponent {
     const btnTxt = this.state.isDisabled
       ? 'Click Here To Enable Editing'
       : 'Click Here To Disable Editing'
+
     return (
       <section>
         <Header title="Personal Informations" />

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import uuidv1 from 'uuid/v1'
 import Loader from 'components/atoms/Loader'
 import Person from 'components/organisms/Person'
@@ -11,6 +12,16 @@ import { parseUri } from 'utils'
 import './Home.css'
 
 class Home extends PureComponent {
+
+  static propTypes = {
+    getPeople: PropTypes.func.isRequired,
+    getFilms: PropTypes.func.isRequired,
+    people: PropTypes.shape({
+      isFetching: PropTypes.boolean,
+      success: PropTypes.boolean,
+      data: PropTypes.object
+    }).isRequired
+  }
 
   state = {
     prestine: false,
@@ -42,12 +53,17 @@ class Home extends PureComponent {
           <h1>StarWars Profile</h1>
         </div>
 
-        <Person data={this.userInfo} />
+        <Person
+          data={this.userInfo}
+        />
+
         <Films
           data={this.state.films}
           handleDelete={this.handleDelete}
-          handleAdd={this.handleAdd}
-          isLoading={this.props.films.isFetching} />
+          handleSaveFilm={this.handleSaveFilm}
+          isLoading={this.props.films.isFetching}
+        />
+
         <Species />
         <Vehicles />
         <Starships />
@@ -73,9 +89,7 @@ class Home extends PureComponent {
     this.setState({ films })
   }
 
-  handleAdd = (itemValues) => {
-    console.log(this.state.films)
-
+  handleSaveFilm = (itemValues) => {
     const films = [...this.state.films, {data: {...itemValues, episode_id: uuidv1() }}]
     this.setState({ films })
   }
