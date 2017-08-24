@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import Header from 'components/molecules/Header'
 import Button from 'components/atoms/Button'
 import Loader from 'components/atoms/Loader'
+import Input from 'components/molecules/Input'
 
 import './Films.css'
 
@@ -24,8 +25,15 @@ class Films extends PureComponent {
         { this.props.isLoading
             ? <Loader />
             : <div>
-                <Button onClick={() => this.props.handleAdd(this.state)}>Add Film</Button>
-                <div>{this.renderFormAddFilm(this.props.handleAdd)}</div>
+                <div className="form-films">
+                  {this.renderFormAddFilm(this.props.handleAdd)}
+                  <Button
+                    className="success"
+                    onClick={() => this.props.handleAdd(this.state)}
+                  >
+                    Save
+                  </Button>
+                </div>
                 {this.renderFilms(filmsInfo, this.props.handleDelete)}
               </div>
         }
@@ -41,22 +49,26 @@ class Films extends PureComponent {
         { filmsInfo.map(film => {
             return (
               <div key={film.data.episode_id} className="film-block">
-                <Button onClick={() => handleDelete(film.data)}>Delete</Button>
-                <div>
-                  <label>Title: </label>
-                  <span>{ film.data.title }</span>
+                <div className="action-button">
+                  <Button className="alert" onClick={() => handleDelete(film.data)}>Delete</Button>
                 </div>
-                <div>
-                  <label>Director: </label>
-                  <span>{ film.data.director }</span>
-                </div>
-                <div>
-                  <label>Producer: </label>
-                  <span>{ film.data.producer }</span>
-                </div>
-                <div>
-                  <label>Release: </label>
-                  <span>{ film.data.release_date }</span>
+                <div className="content">
+                  <div>
+                    <label>Title: </label>
+                    <span>{ film.data.title }</span>
+                  </div>
+                  <div>
+                    <label>Director: </label>
+                    <span>{ film.data.director }</span>
+                  </div>
+                  <div>
+                    <label>Producer: </label>
+                    <span>{ film.data.producer }</span>
+                  </div>
+                  <div>
+                    <label>Release: </label>
+                    <span>{ film.data.release_date }</span>
+                  </div>
                 </div>
               </div>
             )
@@ -69,22 +81,10 @@ class Films extends PureComponent {
   renderFormAddFilm = () => {
     return (
       <div>
-        <div>
-          <label>Title</label>
-          <input name="title" value={this.state.title} onChange={this.handleChange}/>
-        </div>
-        <div>
-          <label>Director</label>
-          <input name="director" value={this.state.director} onChange={this.handleChange}/>
-        </div>
-        <div>
-          <label>Producer</label>
-          <input name="producer" value={this.state.producer} onChange={this.handleChange}/>
-        </div>
-        <div>
-          <label>Release</label>
-          <input name="release_date" value={this.state.release_date} onChange={this.handleChange}/>
-        </div>
+        <Input handleChange={this.handleChange} type="text" name="title" elementId={ this.state.title } title="Title" />
+        <Input handleChange={this.handleChange} type="text" name="director" elementId={ this.state.director } title="Director" />
+        <Input handleChange={this.handleChange} type="text" name="producer" elementId={ this.state.producer } title="Producer" />
+        <Input handleChange={this.handleChange} type="text" name="release_date" elementId={ this.state.release_date } title="Realease Date" />
       </div>
     )
   }

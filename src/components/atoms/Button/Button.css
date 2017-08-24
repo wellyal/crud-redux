@@ -1,0 +1,39 @@
+button.alert {
+  padding: 12px 25px;
+  border: 0;
+  background: #ED4337;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+button.alert:hover {
+  opacity: 1;
+}
+
+button.success {
+  padding: 12px 25px;
+  border: 0;
+  background: #4ef84e;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  width: 200px;
+  margin: 20px 0;
+}
+
+button.success:hover {
+  opacity: 1;
+}
+
+button.link {
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 20px 0;
+}

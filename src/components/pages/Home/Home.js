@@ -67,7 +67,7 @@ class Home extends PureComponent {
 
   handleDelete = (item) => {
     const films = this.state.films.filter( film => {
-      return film.data.episode_id != item.episode_id
+      return film.data.episode_id !== item.episode_id
     })
 
     this.setState({ films })

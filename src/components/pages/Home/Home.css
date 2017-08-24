@@ -1,8 +1,15 @@
 .container {
-  margin: 10px;
+  height: 100%;
+  width: 100%;
+  background: url(./starwars.gif) no-repeat center center fixed;
 }
 
 .home-header {
   text-align: center;
-  margin: 20px 0;
+  color: #fff;
 }
+
+.home-header h1 {
+  padding: 20px 0;
+}
+
