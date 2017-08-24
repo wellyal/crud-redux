@@ -26,7 +26,7 @@ List main libraries, frameworks used including versions (React, Angular etc...)
 
 ### Prerequisites
 
-Para rodar o projeto você deve ter no mínimo a versão atual LTS do node 6.11.1 (na data que esse documento foi escrito)
+Para rodar o projeto você deve ter a versão atual LTS do node 6.11.1 (na data que esse documento foi escrito)
 
 ### Building
 
